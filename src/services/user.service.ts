@@ -6,6 +6,7 @@ import User from '../interfaces/User';
 import Login from '../interfaces/login';
 import validateLoginFields from './validations/login.validation';
 import { errorThrower } from '../utils/errorThrower';
+import userValidation from './validations/user.validation';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ export default class UserService {
   }
 
   public createUser = async (user: User): Promise<string> => {
+    userValidation(user);
     const insertId = await this.model.create(user);
     const token = this.generateToken({ id: insertId, ...user });
     return token;     
