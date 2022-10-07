@@ -4,6 +4,7 @@ import UserController from '../controllers/user.controller';
 const userRouter = Router();
 
 const controller = new UserController();
-userRouter.post('/', controller.createUser);
+userRouter.post('/users', controller.createUser);
+userRouter.post('/login', controller.login);
 
 export default userRouter;

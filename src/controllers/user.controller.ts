@@ -14,4 +14,11 @@ export default class UserController {
 
     res.status(201).json({ token });
   };
+
+  public login = async (req: Request, res: Response) => {
+    const { body } = req;
+    const token = await this.service.login(body);
+
+    res.status(200).json({ token });
+  };
 }
