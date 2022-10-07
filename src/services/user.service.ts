@@ -26,12 +26,11 @@ export default class UserService {
     validateLoginFields(user);
 
     const isUserExist = await this.model.getUserByLogin(user);
-
-    if (isUserExist) return this.generateToken(isUserExist);
-    errorThrower(401, 'Username or password invalid');
+    if (!isUserExist) errorThrower(401, 'Username or password invalid');
+    return this.generateToken(isUserExist);
   };
 
-  private generateToken = ({ id, username }: User) => {
+  private generateToken = ({ username, id }: User) => {
     const payload = { username, id };
     // const secret = process.env.JWT_SECRET;
     const secret = 'SENHASUPERSECRETA';
