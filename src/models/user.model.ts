@@ -21,7 +21,7 @@ export default class UserModel {
 
   public getUserByLogin = async ({ username, password }: Login): Promise<User> => {
     const user: unknown = await this.connection.execute(`
-    SELECT * FROM TrybeSmith.Users WHERE username = ? AND password = ?
+    SELECT * FROM Trybesmith.Users WHERE username = ? AND password = ?
     `, [username, password]);
 
     return user as User;
