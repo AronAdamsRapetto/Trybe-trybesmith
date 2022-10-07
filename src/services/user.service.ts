@@ -33,7 +33,8 @@ export default class UserService {
 
   private generateToken = ({ id, username }: User) => {
     const payload = { username, id };
-    const secret = process.env.JWT_SECRET;
+    // const secret = process.env.JWT_SECRET;
+    const secret = 'SENHASUPERSECRETA';
     const token: string = jwt.sign(payload, secret as string);
     return token;
   };
